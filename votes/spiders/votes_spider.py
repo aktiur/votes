@@ -8,7 +8,9 @@ __author__ = 'Arthur Cheysson <arthur.cheysson@opusline.fr>'
 RE_VOTE = r'([0-9]+)(\*?)'
 
 class VotesSpider(scrapy.Spider):
-    name = "vote"
+    name = "votes"
+    allowed_domains = ['assemblee-nationale.fr']
+
     start_urls = ['http://www2.assemblee-nationale.fr/scrutins/liste/(legislature)/14']
 
     def __init__(self):
