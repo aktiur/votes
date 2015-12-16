@@ -9,11 +9,15 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
+import os
+
 BOT_NAME = 'votes'
 
 SPIDER_MODULES = ['votes.spiders']
 NEWSPIDER_MODULE = 'votes.spiders'
 
+VOTES_OUTPUT_DIR = os.path.join(os.getcwd(), 'output')
+VOTES_OUTPUT_ENCODING = 'cp1252'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'votes (+http://www.yourdomain.com)'
@@ -61,14 +65,14 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'votes.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'votes.pipelines.MultiCsvPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 # NOTE: AutoThrottle will honour the standard settings for concurrency and delay
-#AUTOTHROTTLE_ENABLED=True
+AUTOTHROTTLE_ENABLED=True
 # The initial download delay
 #AUTOTHROTTLE_START_DELAY=5
 # The maximum download delay to be set in case of high latencies
