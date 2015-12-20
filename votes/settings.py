@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for votes project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     http://doc.scrapy.org/en/latest/topics/settings.html
-#     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-
 import os
 
 BOT_NAME = 'votes'
@@ -16,8 +7,12 @@ BOT_NAME = 'votes'
 SPIDER_MODULES = ['votes.spiders']
 NEWSPIDER_MODULE = 'votes.spiders'
 
+# Les informations de configuration du pipeline responsable de la sérialisation en csv
+# Le nom du répertoire dans lequel seront enregistrés les fichiers csv
 VOTES_CSV_OUTPUT_DIR = os.path.join(os.getcwd(), 'output')
+# le charset utilisé pour écrire les fichiers csv
 VOTES_CSV_ENCODING = 'cp1252'
+# le séparateur utilisé pour délimiter les champs dans les fichiers csv
 VOTES_CSV_DELIMITER = ';'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
