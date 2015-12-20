@@ -28,6 +28,8 @@ class Vote(scrapy.Item):
     legislature = scrapy.Field()
     identifiant = scrapy.Field()
 
+    parti = scrapy.Field()
+
     prenom = scrapy.Field()
     nom = scrapy.Field()
 

@@ -74,7 +74,7 @@ ITEM_PIPELINES = {
 # NOTE: AutoThrottle will honour the standard settings for concurrency and delay
 AUTOTHROTTLE_ENABLED=True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY=5
+AUTOTHROTTLE_START_DELAY=5
 # The maximum download delay to be set in case of high latencies
 #AUTOTHROTTLE_MAX_DELAY=60
 # Enable showing throttling stats for every response received:
@@ -87,3 +87,6 @@ AUTOTHROTTLE_ENABLED=True
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+LOG_FILE = "logs.txt"
+LOG_LEVEL = 'INFO'
