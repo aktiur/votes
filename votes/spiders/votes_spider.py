@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import scrapy
-from votes import items
 import logging
 import re
+
+import scrapy
+
+from votes import items
 
 __author__ = 'Arthur Cheysson <arthur.cheysson@opusline.fr>'
 
@@ -92,7 +94,14 @@ class VotesSpider(scrapy.Spider):
             s["nombres_votants"], s["nombres_exprimes"], s["nombres_majorite"], s["votes_pour"], s["votes_contre"] = nombre_votes
             s["abstention"] = s["nombres_votants"] - s["nombres_exprimes"]
 
-        s["resultat"] = elements_votes.css('.annoncevote::text').extract_first()
+        resultat_brut = elements_votes.css('.annoncevote::text').extract_first()
+
+        if u"n'a pas adopté" in resultat_brut:
+            s["resultat"] = u"non adopté"
+        elif u"a adopté" in resultat_brut:
+            s["resultat"] = u"adopté"
+        else:
+            s["resultat"] = u"Inattendu : " + resultat_brut
 
         return s
 
@@ -102,7 +111,7 @@ class VotesSpider(scrapy.Spider):
 
         for groupe, nb_membres in zip(elem_groupes, noms_groupe_avec_nombre):
             p = items.Position()
-            p['parti'] = groupe.css('.nom-groupe::text').extract_first()
+            p['groupe'] = groupe.css('.nom-groupe::text').extract_first()
 
             p['membres'] = self.re_groupe_membres.search(nb_membres).group(1)
 
@@ -136,7 +145,7 @@ class VotesSpider(scrapy.Spider):
                         prenom_potentiel = ' '.join(prenom_potentiel.split()[1:])
 
                     v = items.Vote()
-                    v['parti'] = nom_groupe
+                    v['groupe'] = nom_groupe
                     v['position'] = nom_position
 
                     v['prenom'] = prenom_potentiel
@@ -156,7 +165,7 @@ class VotesSpider(scrapy.Spider):
                             prenom = ' '.join(composants_prenom)
 
                         v = items.Vote()
-                        v['parti'] = nom_groupe
+                        v['groupe'] = nom_groupe
                         v['position'] = nom_position
                         v['prenom'] = prenom
                         v['nom'] = elem_nom.xpath('text()').extract_first().strip().replace(NBSP, ' ')
