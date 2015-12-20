@@ -21,10 +21,10 @@ class MultiCsvPipeline(object):
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            output_dir=crawler.settings.get('VOTES_OUTPUT_DIR'),
-            encoding=crawler.settings.get('VOTES_OUTPUT_ENCODING'),
+            output_dir=crawler.settings.get('VOTES_CSV_OUTPUT_DIR'),
+            encoding=crawler.settings.get('VOTES_CSV_ENCODING'),
             csv_params={
-                'delimiter': crawler.settings.get('VOTES_CSV_DELIMITER', ';')
+                'delimiter': crawler.settings.get('VOTES_CSV_DELIMITER')
             }
         )
 

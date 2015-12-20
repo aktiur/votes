@@ -48,17 +48,3 @@ class Position(scrapy.Item):
     contre = scrapy.Field()
     abstention = scrapy.Field()
     nonvotants = scrapy.Field()
-
-# class Depute(scrapy.Item):
-#     prenom = scrapy.Field()
-#     nom = scrapy.Field()
-#
-#     parti = scrapy.Field()
-
-
-# class Parti(scrapy.Item):
-#     nom = scrapy.Field()
-
-
-
-

@@ -16,8 +16,9 @@ BOT_NAME = 'votes'
 SPIDER_MODULES = ['votes.spiders']
 NEWSPIDER_MODULE = 'votes.spiders'
 
-VOTES_OUTPUT_DIR = os.path.join(os.getcwd(), 'output')
-VOTES_OUTPUT_ENCODING = 'cp1252'
+VOTES_CSV_OUTPUT_DIR = os.path.join(os.getcwd(), 'output')
+VOTES_CSV_ENCODING = 'cp1252'
+VOTES_CSV_DELIMITER = ';'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'votes (+http://www.yourdomain.com)'
