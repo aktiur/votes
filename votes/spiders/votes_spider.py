@@ -159,7 +159,7 @@ class VotesSpider(scrapy.Spider):
                         chaine_prenom = elem_nom.xpath('preceding-sibling::node()[1]').extract_first()
                         prenom_potentiel = chaine_prenom.split(' ')[-1]
                         composants_prenom = prenom_potentiel.split()  # par espace inbrécable du coup
-                        if composants_prenom[0] in [u'M.', u'Mme']:
+                        if composants_prenom[0] in [u'M.', u'Mme', u'MM.', u'Mmes']:
                             prenom = ' '.join(composants_prenom[1:])
                         else:
                             prenom = ' '.join(composants_prenom)
